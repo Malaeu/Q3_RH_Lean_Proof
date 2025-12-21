@@ -2,9 +2,14 @@
 
 **A Lean 4 formalization of the Q3 approach to the Riemann Hypothesis**
 
+**Author:** Eugen Malamutmann
+**ORCID:** [0000-0003-4624-5890](https://orcid.org/0000-0003-4624-5890)
+**Affiliation:** University Hospital Essen, Germany
+
 [![Lean 4](https://img.shields.io/badge/Lean-4.24.0-blue)](https://lean-lang.org/)
 [![Mathlib](https://img.shields.io/badge/Mathlib-latest-green)](https://github.com/leanprover-community/mathlib4)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![ORCID](https://img.shields.io/badge/ORCID-0000--0003--4624--5890-green)](https://orcid.org/0000-0003-4624-5890)
 
 ---
 
