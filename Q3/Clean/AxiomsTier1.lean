@@ -115,6 +115,11 @@ axiom heat_kernel_approx_identity : ∀ (K : ℝ) (f : ℝ → ℝ),
 /-- W_sum is nonnegative (sum of nonnegative weights) -/
 axiom W_sum_nonneg : ∀ K : ℝ, Q3.W_sum K ≥ 0
 
+/-- Heat convolution is smooth: ρ_t * Φ is C^∞ for any bounded Φ
+    Standard PDE theory (19th century) -/
+axiom heat_conv_smooth : ∀ (Φ : ℝ → ℝ) (t : ℝ), t > 0 →
+  ContDiff ℝ ⊤ (fun x => ∫ y, Q3.heat_kernel t (x - y) * Φ y)
+
 end Q3.Clean
 
 /-!

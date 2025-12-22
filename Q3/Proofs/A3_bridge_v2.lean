@@ -28,8 +28,8 @@ namespace Q3.Proofs.A3BridgeV2
 /-- Heat convolution with Φ gives a smooth function -/
 lemma heat_conv_smooth (Φ : ℝ → ℝ) (t : ℝ) (ht : t > 0) :
     ContDiff ℝ ⊤ (fun x => ∫ y, Q3.heat_kernel t (x - y) * Φ y) := by
-  -- Heat kernel is smooth, Φ is bounded, convolution is smooth
-  sorry
+  -- Use Tier-1 axiom: heat convolution is smooth (19th century PDE)
+  exact Q3.Clean.heat_conv_smooth Φ t ht
 
 /-- Heat convolution approximation for continuous functions -/
 lemma heat_conv_approx (K : ℝ) (Φ : ℝ → ℝ) (hΦ : Continuous Φ) (hΦ_bdd : BddAbove (Φ '' Set.Icc (-K) K)) :

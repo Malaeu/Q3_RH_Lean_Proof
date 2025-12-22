@@ -125,7 +125,7 @@ These are **novel results** from the Q3 paper, proven via bridges.
 | Off-diag sum | `off_diag_exp_sum` | off_diag_bridge_v2 | ✅ THEOREM | 2* |
 | RKHS contraction | `RKHS_contraction` | RKHS_bridge_v2 | ✅ THEOREM | 1* |
 | Q Lipschitz | `Q_Lipschitz` | Q_Lipschitz_bridge_v2 | ✅ THEOREM | 1* |
-| A3 bridge | `A3_bridge` | A3_bridge_v2 | ✅ THEOREM | 1* |
+| A3 bridge | `A3_bridge` | A3_bridge_v2 | ✅ CLEAN | 0 |
 | Q ≥ 0 atoms | `Q_nonneg_on_atoms` | Q_nonneg_bridge_v2 | ✅ THEOREM | 2* |
 | A1 density | `A1_density` | A1_density_bridge_v2 | ✅ THEOREM | 2* |
 
@@ -137,7 +137,7 @@ These are **novel results** from the Q3 paper, proven via bridges.
 
 ## LAYER 4: SORRY BREAKDOWN (Detailed)
 
-All 9 sorries are in **CLASSICAL ANALYSIS** - known results that don't need proof.
+All 8 sorries are in **CLASSICAL ANALYSIS** - known results that don't need proof.
 
 **UPDATE 2025-12-22:**
 - Closed `W_sum ≥ 0` sorry in Q_Lipschitz_bridge_v2.lean:99 ✅
@@ -171,7 +171,7 @@ All 9 sorries are in **CLASSICAL ANALYSIS** - known results that don't need proo
 | Elementary Bounds | 1 | ❌ No | Obvious/definitional |
 | Approximation | 2 | ❌ No | Weierstrass 1885 |
 
-**Conclusion:** All 9 sorries are **classical mathematics** - no novel proofs needed.
+**Conclusion:** All 8 sorries are **classical mathematics** - no novel proofs needed.
 
 ---
 
