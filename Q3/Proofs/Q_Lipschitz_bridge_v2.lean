@@ -96,7 +96,12 @@ lemma L_Q_pos (K : ℝ) (hK : K > 0) : L_Q K > 0 := by
   have hM := M_a_pos K hK
   have hW : Q3.W_sum K ≥ 0 := by
     -- W_sum = Σ w_Q(n) where w_Q(n) ≥ 0
-    sorry  -- Technical: sum of nonneg terms
+    unfold Q3.W_sum
+    apply tsum_nonneg
+    intro n
+    split_ifs
+    · exact Q3.w_Q_nonneg n
+    · rfl
   have h1 : 2 * K * M_a K > 0 := by positivity
   linarith
 

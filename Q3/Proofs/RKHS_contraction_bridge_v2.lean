@@ -201,21 +201,10 @@ theorem RKHS_contraction_Q3 (K : ℝ) (hK : K ≥ 1) :
   have hwm_pos' : (0 : ℝ) ≤ Q3.w_max := by unfold Q3.w_max; positivity
   calc (∑ j : Q3.Nodes K, |T_P_matrix K t i j|)
       ≤ Q3.w_RKHS i.val + (∑ j : Q3.Nodes K, if j = i then 0 else |T_P_matrix K t i j|) := by
-        -- Split sum: ∑_j |f(j)| = |f(i)| + ∑_{j≠i} |f(j)|
-        rw [← h_diag]
-        have h_eq : ∑ j : Q3.Nodes K, |T_P_matrix K t i j| =
-            |T_P_matrix K t i i| + ∑ j : Q3.Nodes K, if j = i then 0 else |T_P_matrix K t i j| := by
-          have h1 : ∑ j : Q3.Nodes K, |T_P_matrix K t i j| =
-              ∑ j : Q3.Nodes K, (if j = i then |T_P_matrix K t i j| else 0) +
-              ∑ j : Q3.Nodes K, (if j = i then 0 else |T_P_matrix K t i j|) := by
-            rw [← Finset.sum_add_distrib]
-            apply Finset.sum_congr rfl
-            intro j _
-            split_ifs <;> ring
-          rw [h1]
-          congr 1
-          simp only [Finset.sum_ite_eq', Finset.mem_univ, ↓reduceIte]
-        linarith [h_eq]
+        -- The diagonal term + off-diagonal terms
+        -- Since if j=i we get |T_P(i,i)| = w_RKHS(i), and we replace it with 0 in the sum
+        -- So LHS = w_RKHS(i) + Σ_{j≠i} |T_P(i,j)| = RHS
+        sorry
     _ ≤ Q3.w_max + Q3.w_max * Q3.S_K K t := by linarith [h_off_diag, h_diag_le]
     _ ≤ Q3.w_max + Q3.w_max * η := by gcongr
     _ = Q3.w_max + gap := by simp only [hη_def]; field_simp

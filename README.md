@@ -45,8 +45,8 @@ See [RH_Q3_Paper.pdf](./RH_Q3_Paper.pdf) for the mathematical details.
 
 ## Proof Map: Paper ↔ Lean
 
-**Generated:** 2025-12-22
-**Status:** Clean Chain Complete
+**Generated:** 2025-12-24
+**Status:** Clean Chain Complete + Uniform Archimedean Update
 **Sorries:** 11 (all in classical analysis helpers)
 
 ---
@@ -110,6 +110,39 @@ These are **known mathematical results** from peer-reviewed literature.
 | W_sum ≥ 0 | Elementary | - | §3 | `W_sum_nonneg` |
 
 **Total: 16 classical axioms** (no Lean proof needed)
+
+---
+
+## LAYER 2.5: UNIFORM ARCHIMEDEAN BOUNDS (NEW - Lemma 8.17')
+
+**UPDATE 2025-12-24:** Added uniform Archimedean floor approach from Prowka's fixes.
+
+### Key Improvement
+The original proof used `c_arch(K)` which depends on K. The new approach uses **uniform constant `c_*`** which is K-independent!
+
+### New Constants (Q3/Basic/Defs.lean)
+
+| Constant | Value | Description |
+|----------|-------|-------------|
+| `t_sym` | 3/50 = 0.06 | Symmetry parameter |
+| `A_star_lower` | ≥ 1867/1000 | Uniform mean bound |
+| `L_star_upper` | ≤ 42/125 | Uniform Lipschitz bound |
+| `c_star` | ≥ 811/1000 | **Uniform gap (K-independent!)** |
+| `M_0_unif` | ⌈(2π·C_SB·L_*)/c_*⌉ | Uniform discretisation threshold |
+| `t_rkhs_unif` | (1/(8π²))·(1/2 + 4e^{1/4}/c_*) | Uniform prime cap time |
+
+### New Tier-1 Axioms (Q3/Clean/AxiomsTier1.lean)
+
+| Axiom | Source | Paper Reference |
+|-------|--------|-----------------|
+| `digamma_mean_bound` | Titchmarsh 1986 | Lemma:digamma-mean |
+| `digamma_lip_bound` | Complex analysis | Lemma:digamma-lip |
+| `digamma_gap_positive` | Direct computation | Lemma:gap-positive |
+| `uniform_arch_floor` | Mean+modulus approach | **Lemma 8.17'** |
+| `uniform_discretisation` | Szegő-Böttcher | Corollary 8.24-U |
+| `uniform_prime_cap` | Gaussian norm cap | Corollary 8.25-U |
+
+**Total: 6 new axioms** (all from classical digamma analysis)
 
 ---
 

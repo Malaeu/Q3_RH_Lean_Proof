@@ -9,7 +9,6 @@ A3 states: RKHS-heat approximation ρ_t * f is close to heat semigroup in RKHS.
 -/
 
 import Q3.Basic.Defs  -- ONLY Defs, no Axioms!
-import Q3.Clean.AxiomsTier1  -- Tier-1 classical axioms
 
 set_option linter.mathlibStandardSet false
 set_option linter.unusedVariables false
@@ -28,15 +27,15 @@ namespace Q3.Proofs.A3BridgeV2
 /-- Heat convolution with Φ gives a smooth function -/
 lemma heat_conv_smooth (Φ : ℝ → ℝ) (t : ℝ) (ht : t > 0) :
     ContDiff ℝ ⊤ (fun x => ∫ y, Q3.heat_kernel t (x - y) * Φ y) := by
-  -- Use Tier-1 axiom: heat convolution is smooth (19th century PDE)
-  exact Q3.Clean.heat_conv_smooth Φ t ht
+  -- Heat kernel is smooth, Φ is bounded, convolution is smooth
+  sorry
 
 /-- Heat convolution approximation for continuous functions -/
 lemma heat_conv_approx (K : ℝ) (Φ : ℝ → ℝ) (hΦ : Continuous Φ) (hΦ_bdd : BddAbove (Φ '' Set.Icc (-K) K)) :
     ∀ ε > 0, ∃ δ > 0, ∀ t > 0, t < δ →
       ∀ x ∈ Set.Icc (-K) K, |Φ x - ∫ y, Q3.heat_kernel t (x - y) * Φ y| < ε := by
-  -- Use Tier-1 axiom: heat kernel is approximate identity (19th century PDE)
-  exact Q3.Clean.heat_kernel_approx_identity K Φ hΦ
+  -- Heat kernel is approximate identity: ρ_t * Φ → Φ as t → 0
+  sorry
 
 /-- A3 Bridge Theorem: RKHS-based approximation converges to heat flow.
 

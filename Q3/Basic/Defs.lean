@@ -195,6 +195,39 @@ def t_min (K η : ℝ) : ℝ :=
 def S_K (K t : ℝ) : ℝ :=
   2 * Real.exp (-(delta_K K)^2 / (4 * t)) / (1 - Real.exp (-(delta_K K)^2 / (4 * t)))
 
+/-! ## Uniform Archimedean Constants (Lemma 8.17' and digamma bounds) -/
+
+/-- Symmetry parameter: t_sym = 3/50 = 0.06 -/
+def t_sym : ℝ := 3 / 50
+
+/-- Minimum bandwidth for uniform bounds -/
+def B_min : ℝ := 1
+
+/-- Uniform mean bound: A_*(t_sym) ≥ 1867/1000 (from digamma analysis) -/
+def A_star_lower : ℝ := 1867 / 1000
+
+/-- Uniform Lipschitz bound: L_*(t_sym) ≤ 42/125 (from digamma analysis) -/
+def L_star_upper : ℝ := 42 / 125
+
+/-- Uniform Archimedean floor: c_* = A_* - π·L_* ≥ 811/1000
+    This is the KEY improvement: c_* is K-independent! -/
+def c_star : ℝ := 811 / 1000
+
+/-- Szegő-Böttcher constant (standard value) -/
+def C_SB : ℝ := 4
+
+/-- Uniform discretisation threshold: M₀^unif = ⌈(2π·C_SB·L_*)/c_*⌉ -/
+def M_0_unif : ℕ := Nat.ceil ((2 * Real.pi * C_SB * L_star_upper) / c_star)
+
+/-- Uniform prime cap time: t_rkhs^unif = (1/(8π²))·(1/2 + 4e^{1/4}/c_*) -/
+def t_rkhs_unif : ℝ := (1 / (8 * Real.pi^2)) * (1/2 + 4 * Real.exp (1/4) / c_star)
+
+/-- Verification: c_* > 0 (needed for contraction arguments) -/
+lemma c_star_pos : c_star > 0 := by unfold c_star; norm_num
+
+/-- Verification: c_* < 1 (sanity check) -/
+lemma c_star_lt_one : c_star < 1 := by unfold c_star; norm_num
+
 end Q3
 
 end

@@ -12,6 +12,7 @@ The mathematical argument is valid (Mean Value Theorem + geometric series).
 -/
 
 import Q3.Basic.Defs  -- ONLY Defs, no Axioms!
+import Q3.Clean.AxiomsTier1  -- Tier-1 classical axioms (MVT, geometric series, etc.)
 
 set_option linter.mathlibStandardSet false
 set_option linter.unusedVariables false
@@ -68,9 +69,8 @@ noncomputable instance Nodes_fintype (K : ℝ) : Fintype (Q3.Nodes K) :=
 /-- Log difference bound via MVT: |log i - log j| ≥ |i - j| / max(i,j) -/
 lemma log_diff_bound (i j : ℕ) (hi : 2 ≤ i) (hj : 2 ≤ j) (hij : i ≠ j) :
     |Real.log i - Real.log j| ≥ |((i : ℝ) - j)| / max (i : ℝ) j := by
-  -- MVT: ∃ c ∈ (min i j, max i j), |log i - log j| = |i - j| / c
-  -- Since c ≤ max(i, j), we have |i - j| / c ≥ |i - j| / max(i, j)
-  sorry
+  -- Use Tier-1 axiom: MVT for log (Cauchy ~1820)
+  exact Q3.Clean.MVT_log_bound i j hi hj hij
 
 /-- Node spacing: |ξ_i - ξ_j| ≥ |i - j| * δ_K
     Proof: Mean Value Theorem on log(x)/(2π) -/
@@ -88,8 +88,13 @@ lemma node_spacing_lemma (K : ℝ) (hK : 1 ≤ K) (i j : ℕ)
   have hj_le := (Nodes_subset_Icc K hj).2
   have h_max_bound : max (i : ℝ) j ≤ (N_K K : ℝ) + 1 := by
     apply max_le <;> exact_mod_cast Nat.le_of_lt_succ (Nat.lt_succ_of_le ‹_›)
-  -- Technical: combining log_diff_bound with max bound
-  sorry
+  -- Technical: combine log_diff_bound with h_max_bound
+  -- |ξ_i - ξ_j| = |log i - log j| / (2π)
+  --            ≥ |i - j| / (2π · max(i,j))  [by log_diff_bound]
+  --            ≥ |i - j| / (2π(N_K+1))      [by h_max_bound]
+  --            = |i - j| · δ_K
+  -- Uses: log_diff_bound, h_max_bound
+  sorry  -- TODO: algebraic manipulation with div_le_div
 
 /-! ## Main Theorem -/
 
